@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-invoice',
@@ -12,13 +13,17 @@ export class InvoiceComponent implements OnInit {
   ngOnInit() {
   }
 
-  tab = [1,2];
+  products: Product[] = [new Product("","","")];
 
   addProduct(){
-    this.tab.push(3);
+    this.products.push(new Product("","",""));
   }
 
   remove(){
-    this.tab.pop();
+    this.products.pop();
+  }
+
+  onShowProducts() {
+    console.log(this.products);
   }
 }
