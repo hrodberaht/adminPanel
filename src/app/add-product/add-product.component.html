@@ -1,6 +1,13 @@
-{{ name }}
-<hr>
-<p>{{ price }}</p>
-<p>Give me the number</p>
-<input [(ngModel)]="price" (input)="checkAnswer($event)">
-<p [ngStyle]='{ color: getColor()}' *ngIf="answer">You have right</p>
+<button (click)="onShowAddProduct()">Add Product</button>
+<div *ngIf="show">
+    <form>
+        Name
+        <input type="text" name="name" [(ngModel)]="product.name">
+        Price
+        <input type="text" name="price" [(ngModel)]="product.price">
+        Img
+        <input type="text" name="imgUrl" [(ngModel)]="product.img">
+
+        <button type="submit" (click)="onSubmit()">Dodaj</button>
+    </form>
+</div>

@@ -20,6 +20,11 @@ export class ProductListComponent implements OnInit {
   ngOnInit() {
   }
 
+  onAddProduct(product:Product) {
+    this.products.push(product);
+
+  }
+
   
 
 }

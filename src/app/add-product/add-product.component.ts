@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Product } from '../models/product.model';
+
 
 @Component({
   selector: 'app-add-product',
@@ -6,30 +8,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-
-  name = '';
-  price;
-  answer = false;
+  @Output() onAddProduct = new EventEmitter<Product>();
+  show:boolean = false;
+  product:Product;
+  
   constructor() {
-    setTimeout(() => this.name = "edek", 2000)
+    this.product = new Product("koala","30","img");
   }
 
   ngOnInit() {
   }
 
-  checkAnswer(event) {
-    if(event.target.value === "")
-    {
-      this.answer = false;
-      return;
-    }
-
-    if(event.target.value == 2)
-    this.answer = true;
+  onShowAddProduct() {
+    this.show = !this.show; //toggle
   }
 
-  getColor() {
-    return this.price == 2 ? "green" : "red";
+  onSubmit() {
+    this.onAddProduct.emit(this.product);
+    this.addToDatabase();
+    this.product = new Product("","","");
+  }
+
+  addToDatabase() {
+    console.log(this.product);
   }
 
 }
