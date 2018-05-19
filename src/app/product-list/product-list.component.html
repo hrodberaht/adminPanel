@@ -1,4 +1,4 @@
-<app-add-product (onAddProduct)="onAddProduct($event)"></app-add-product>
+<app-add-product (onAddProduct)="onProductAdded($event)"></app-add-product>
 <app-product 
   *ngFor="let product of products"
   [productList]="product">

@@ -1,26 +1,27 @@
 import { Component, OnInit } from '@angular/core';
+
 import { Product } from '../models/product.model';
+import { ProductsService } from '../services/products.service';
 
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
-  styleUrls: ['./product-list.component.css']
+  styleUrls: ['./product-list.component.css'],
+  providers:[ProductsService]
 })
 export class ProductListComponent implements OnInit {
 
-  products: Product[] = [new Product("jasiek","22.30","https://www.smyk.com/matex-poszewka-na-poduszke-typu-jasiek-frotte-zolta-40x40-cm.html"),
-                        new Product("jasiek","22.30","https://www.smyk.com/matex-poszewka-na-poduszke-typu-jasiek-frotte-zolta-40x40-cm.html")
-  ];
+  products: Product[];
 
-  constructor() { 
-    setTimeout(() => console.log(this.products),2000);
+  constructor(private productService: ProductsService) { 
     
   }
 
   ngOnInit() {
+    this.products = this.productService.getProducts();
   }
 
-  onAddProduct(product:Product) {
+  onProductAdded(product:Product) {
     this.products.push(product);
 
   }
