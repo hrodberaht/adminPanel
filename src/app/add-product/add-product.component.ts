@@ -1,5 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+
 import { Product } from '../models/product.model';
+import { ProductsListService } from '../services/products-list.service';
 
 
 @Component({
@@ -8,15 +10,15 @@ import { Product } from '../models/product.model';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  @Output() onAddProduct = new EventEmitter<Product>();
   show:boolean = false;
   product:Product;
   
-  constructor() {
-    this.product = new Product("koala","30","img");
+  constructor(private prodService: ProductsListService) {
+    
   }
 
   ngOnInit() {
+    this.product = new Product("koala","30","img");
   }
 
   onShowAddProduct() {
@@ -24,9 +26,7 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubmit() {
-    this.onAddProduct.emit(this.product);
-    this.addToDatabase();
-    this.product = new Product("","","");
+    this.prodService.addProduct(this.product);
   }
 
   addToDatabase() {
