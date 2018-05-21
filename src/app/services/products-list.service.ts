@@ -14,6 +14,7 @@ export class ProductsListService {
   addProduct(product: Product) {
     this.products.push(product);
     this.productsChanged.emit(this.products.slice());// return copy of products
+    alert("Dodano produckt: " + product.name)
   }
     
 }
