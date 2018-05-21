@@ -1,12 +1,17 @@
-<p>
-  <a routerLink="/">Home</a>
-</p>
-<p>
-  <a routerLink="/productList">Product List</a>
-</p>
-<p>
-  <a routerLink="/addProduct">Add product</a>
-</p>
-<p>
-  <a routerLink="/invoice">Add invoice</a>
-</p>
+<div >
+  <ul class="nav nav-tabs">
+    <li routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}">
+      <a routerLink="/">Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/productList">Product List</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/addProduct">Add product</a>
+    </li>
+    <li routerLinkActive="active">
+      <a routerLink="/invoice">Add invoice</a>
+    </li>
+  </ul>
+</div>
