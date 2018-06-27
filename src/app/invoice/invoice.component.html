@@ -1,18 +1,6 @@
 Add Invoice
-<ol>
-  <li *ngFor="let product of products">
-    <label for="name">Name</label>
-    <input id="name" name="name" [(ngModel)]="product.name">
-    <input id="price" name="price" [(ngModel)]="product.price">
-    <input id="img" name="img" [(ngModel)]="product.imgPath">
-  </li><button (click)="addProduct()">add</button>
-  <button (click)="remove()">-</button>
-</ol>
-<ol>
-  <li *ngFor="let product of products">
-    <img [src]="product.imgPath" alt="">
-    Name: {{product.name}} 
-    Price: {{ product.price }}
-  </li>
-</ol>
-<button (click)="onShowProducts()">Show</button>
+<p *ngFor="let product of products, let i = index">
+  {{ i +1 }}. <input type="text">
+  <button (click)="onAdd()">+</button>
+  <button *ngIf="i !== 0" (click)="onRemove(i)">-</button>
+</p>

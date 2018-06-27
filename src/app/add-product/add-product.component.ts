@@ -29,8 +29,4 @@ export class AddProductComponent implements OnInit {
     this.prodService.addProduct(this.product);
   }
 
-  addToDatabase() {
-    console.log(this.product);
-  }
-
 }

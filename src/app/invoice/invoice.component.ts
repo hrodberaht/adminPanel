@@ -13,17 +13,16 @@ export class InvoiceComponent implements OnInit {
   ngOnInit() {
   }
 
-  products: Product[] = [new Product("","","")];
+  products: Array<string> = [""];
 
-  addProduct(){
-    this.products.push(new Product("","",""));
-  }
-
-  remove(){
-    this.products.pop();
-  }
-
-  onShowProducts() {
+  onAdd() {
+    this.products.push("")
     console.log(this.products);
   }
+
+  onRemove(index) {
+    this.products.splice(index ,1);
+    console.log(index);
+  }
+
 }
