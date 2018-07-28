@@ -1,6 +1,7 @@
 Add Invoice
 <p *ngFor="let product of products, let i = index">
-  {{ i +1 }}. <input type="text">
+  {{ i +1 }}.
+  <input type="text" #product (input)="onEnter(product.value,i)" (keyup.enter)="onEnter(product.value,i)" [value]="products[i]">
   <button (click)="onAdd()">+</button>
   <button *ngIf="i !== 0" (click)="onRemove(i)">-</button>
 </p>
