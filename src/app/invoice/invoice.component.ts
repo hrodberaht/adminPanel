@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Product } from "../models/product.model";
+import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
 
 @Component({
   selector: "app-invoice",
@@ -7,23 +7,40 @@ import { Product } from "../models/product.model";
   styleUrls: ["./invoice.component.css"]
 })
 export class InvoiceComponent implements OnInit {
-  constructor() {}
+  invoice: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.invoice = fb.group({
+      invoiceNumber: "",
+      date: "",
+      supplier: "",
+      products: this.fb.array([])
+    });
+
+    this.send();
+  }
 
   ngOnInit() {}
 
-  products: Array<string> = [""];
-
-  onEnter(product, index) {
-    this.products[index] = product;
+  get productsForms() {
+    return this.invoice.get("products") as FormArray;
   }
 
-  onAdd() {
-    this.products.push("");
-    console.log(this.products);
+  addProduct() {
+    const product = this.fb.group({
+      productName: [],
+      ean: [],
+      stock: []
+    });
+
+    this.productsForms.push(product);
   }
 
-  onRemove(index) {
-    this.products.splice(index, 1);
-    console.log(index);
+  deleteProduct(i) {
+    this.productsForms.removeAt(i);
+  }
+
+  send() {
+    console.log(this.invoice.value.products);
   }
 }

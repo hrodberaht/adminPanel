@@ -1,7 +1,28 @@
 Add Invoice
-<p *ngFor="let product of products, let i = index">
-  {{ i +1 }}.
-  <input type="text" #product (input)="onEnter(product.value,i)" (keyup.enter)="onEnter(product.value,i)" [value]="products[i]">
-  <button (click)="onAdd()">+</button>
-  <button *ngIf="i !== 0" (click)="onRemove(i)">-</button>
-</p>
+<form [formGroup]="invoice" (ngSubmit)="send()">
+  <div class="form-group">
+    <label>Invoice number: </label>
+    <input type="text" formControlName="invoiceNumber">
+    <label>Date: </label>
+    <input type="date" formControlName="date">
+    <label>Suplier: </label>
+    <input type="text" formControlName="supplier">
+
+    <div formArrayName="products">
+      <div *ngFor="let product of productsForms.controls; let i = index" [formGroupName]="i">
+        <label>Name: </label>
+        <input type="text" formControlName="productName">
+        <label>Ean: </label>
+        <input type="text" formControlName="ean">
+        <label>Stock: </label>
+        <input type="text" formControlName="stock">
+
+        <button (click)="deleteProduct(i)">Delete</button>
+      </div>
+
+      <button (click)="addProduct()">Add Product</button>
+    </div>
+
+    <button type="submit">Submit</button>
+  </div>
+</form>
